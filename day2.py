@@ -22,7 +22,17 @@ def solve_part_1(data):
     print("final answer multiplying horizontal {} and depth {} is {}".format(horizontal, depth, (horizontal*depth)))
 
 def solve_part_2(data):
-    pass
+    horizontal, depth = 0, 0
+    aim = 0
+    for x in data:
+        if x[0] == 'forward':
+            horizontal += x[1]
+            depth += aim * x[1]
+        elif x[0] == 'down':
+            aim += x[1]
+        elif x[0] == 'up':
+            aim -= x[1]
+    print("final answer multiplying horizontal {} and depth {} is {}".format(horizontal, depth, (horizontal*depth)))
 
 if __name__ == '__main__':
     solve()
