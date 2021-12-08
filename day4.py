@@ -22,22 +22,22 @@ def solve_part_1(data, draws, allow_squid_win=False):
             board.append([[int(col), False] for col in data[idx].split(' ') if col != ''])
         idx += 1
     completed_boards = []
-    last_board = None
-    last_draw = -1
+    last_board_won = None
+    last_draw_won = -1
     for draw in draws:
         for board in boards:
             if board not in completed_boards:
                 found = update_board(board, draw)
                 if found == True:
-                    last_board = board
-                    last_draw = draw
+                    last_board_won = board
+                    last_draw_won = draw
                     completed_boards.append(board)
                     if not allow_squid_win:
                         break
         else:
             continue
         break
-    print_answer(last_board, last_draw)
+    print_answer(last_board_won, last_draw_won)
 
 def update_board(board, draw):
    found = True
