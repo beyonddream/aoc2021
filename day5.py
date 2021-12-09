@@ -8,7 +8,7 @@ def solve():
         solve_part_1(data)
         solve_part_2(data)
 
-def solve_part_1(data):
+def solve_part_1(data, include_diagonal=False):
     grid = [row[:] for row in [[0] * 1000] * 1000]
     for line in data:
         x1, y1 = line[0].split(',')
@@ -23,6 +23,17 @@ def solve_part_1(data):
             start_x, end_x = (x1, x2+1) if x1 <= x2 else (x2, x1+1)
             for x in range(start_x, end_x):
                 grid[y1][x] += 1
+        else:
+            if include_diagonal == True:
+                start_x, start_y, end_x, end_y = (x1, y1, x2, y2) if x1 < x2 else (x2, y2, x1, y1)
+                # if up diagonal /, move right and move up (note y starts at 0
+                # and increases down)
+                # if down diagonal \, move right and move down
+                x_step, y_step = (1, -1) if start_y > end_y else (1, 1)
+                while start_x <= end_x:
+                    grid[start_y][start_x] += 1
+                    start_x += x_step
+                    start_y += y_step
     total_overlap = 0
     for y in grid:
         for x in y:
@@ -32,7 +43,7 @@ def solve_part_1(data):
 
 
 def solve_part_2(data):
-    pass
+    solve_part_1(data, True)
 
 if __name__ == '__main__':
     solve()
