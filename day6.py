@@ -7,8 +7,10 @@ MAX_ITERATION = 256
 def solve():
     with open("inputs/day6.txt") as file:
         data = [line for line in file]
-        # WARNING: This will take forever for max_iteration = 256
+        # WARNING: part_1 will take forever for max_iteration = 256 since it
+        # uses suboptimal algorithm
         #solve_part_1(data)
+        # part 2 uses linear time algorithm
         solve_part_2(data)
 
 def solve_part_1(data):
