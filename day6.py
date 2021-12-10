@@ -46,11 +46,8 @@ def solve_part_2(data):
         for idx in range(max_timer - 1):
             internal_timer_bucket[idx] = internal_timer_bucket[idx+1]
         # now move new_fishes to 8 and add to 6
-        if new_fishes > 0:
-            internal_timer_bucket[-1] = new_fishes
-            internal_timer_bucket[6] += new_fishes
-        else:
-            internal_timer_bucket[-1] = 0
+        internal_timer_bucket[-1] = new_fishes
+        internal_timer_bucket[6] += new_fishes
 
     print("After {} day there are {} fishes. fishes {}".format(max_iteration,
                                                     sum(internal_timer_bucket),
